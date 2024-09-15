@@ -57,6 +57,7 @@ def get_data_from_api(url):
 data = get_data_from_api(api_url)
 APS_Files = pd.DataFrame(data)
 JUP_Files = pd.read_csv('Dte.csv', sep=';')
+checkContainers = False
 
 def get_data_from_api(url):
     response = requests.get(url)
@@ -72,23 +73,6 @@ def get_data_from_api(url):
 data = get_data_from_api(api_url)
 APS_Files = pd.DataFrame(data)
 JUP_Files = pd.read_csv('Dte.csv', sep=';')
-
-rowRecintos = st.columns(4)
-recintos = ['Santos Brasil', 'Ecoporto', 'BTP', '...']
-index = 0
-
-for col in rowRecintos:
-    
-    if index != 2:
-        with col:
-            card_style((recintos[index]),  '#71D88B')
-            col.write('Operando')
-        
-    else:
-        with col:
-            card_style((recintos[index]),  '#FF766E')
-            col.write('Atenção!')
-    index += 1
 
 df = []
 df2 = []
@@ -111,19 +95,42 @@ df = pd.DataFrame({
 filtered_df = JUP_Files[~JUP_Files['Viagem'].isin(df['Viagem'])]
 filtered_df2 = APS_Files[~APS_Files['viagem'].isin(df2['viagem'])]
 
-col1, col2 = st.columns([0.65,0.35])
+rowRecintos = st.columns(4)
+recintos = ['Santos Brasil', 'Ecoporto', 'BTP', '...']
+index = 0
 
-with col1:
-    card_style('Nome Navio: ' + filtered_df2.iloc[0]["nomenavio"], '#D9E9E8')
-    card_style('IMO: ' + str(filtered_df2.iloc[0]["imo"]), '#7FCCB8')
-    card_style('Manobra: ' + filtered_df2.iloc[0]['manobra'], '#51BEAB')
-    card_style('Louyd: ' + str(filtered_df.iloc[0]['Lloyd']), '#309B91')
-    card_style('Viagem: ' + filtered_df2.iloc[0]['viagem'], '#1A6A6B')
-with col2:
-    
-    card_style('Data de Chegada: ' + filtered_df2.iloc[0]['data'],
-               '#36D3CC', 'Hora Chegada: ' + filtered_df2.iloc[0]['periodo'])
-    button2 = st.button("Enviar Aviso")
+for col in rowRecintos:
 
-    if button2:
-        st.write('Em breve!')
+    checkOkay = True
+    if filtered_df2.iloc[0]["local"] == recintos[index]:
+        checkOkay = False
+        checkContainers = True
+    if checkOkay == False:
+        with col:
+            card_style((recintos[index]),  '#FF766E')
+            col.write('Atenção!')
+            index += 1
+            continue
+    else:
+        with col:
+            card_style((recintos[index]),  '#71D88B')
+            col.write('Operando')
+            index += 1
+
+if checkContainers == True:
+    col1, col2 = st.columns([0.65, 0.35])
+
+    with col1:
+        card_style('Nome Navio: ' + filtered_df2.iloc[0]["nomenavio"], '#D9E9E8')
+        card_style('IMO: ' + str(filtered_df2.iloc[0]["imo"]), '#7FCCB8')
+        card_style('Manobra: ' + filtered_df2.iloc[0]['manobra'], '#51BEAB')
+        card_style('Louyd: Faltando', '#309B91')
+        card_style('Viagem: ' + filtered_df2.iloc[0]['viagem'], '#1A6A6B')
+    with col2:
+
+        card_style('Data de Chegada: ' + filtered_df2.iloc[0]['data'],
+                '#36D3CC', 'Hora Chegada: ' + filtered_df2.iloc[0]['periodo'])
+        button2 = st.button("Enviar Aviso")
+
+        if button2:
+            st.write('Em breve!')
