@@ -20,6 +20,6 @@ O Protótipo do time Abacateam para o evento Porto Hack Santos 2024
 
    # No arquivo Dte.csv:
    Remova o seguinte index:
-   ```9706190;;CAPE AKRITAS;3919 2024;;BRASIL TERM. PORTUARIO - OPERADOR PORTUA;08/09/2024 00:00;;13/09/2024 19:00;;;Nao
-```
+   **9706190;;CAPE AKRITAS;3919 2024;;BRASIL TERM. PORTUARIO - OPERADOR PORTUA;08/09/2024 00:00;;13/09/2024 19:00;;;Nao**
+
    Após isso re-rode a aplicação
