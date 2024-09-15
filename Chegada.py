@@ -13,6 +13,8 @@ div.stButton > button:first-child {
 }
 </style>""", unsafe_allow_html=True)
 
+st.sidebar.image('styles/Abacateam.png')
+
 def card_style(card_title, card_color, *addtional_title):
     if addtional_title:
         st.markdown(
