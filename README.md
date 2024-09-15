@@ -1,18 +1,16 @@
-# 🎈 Blank app template
+# 🎈 Dashboard AIbacate
 
-A simple Streamlit app template for you to modify!
+O Protótipo do time Abacateam para o evento Porto Hack Santos 2024
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+### Como rodar a aplicação
 
-### How to run it on your own machine
-
-1. Install the requirements
+1. Instalar as dependências
 
    ```
    $ pip install -r requirements.txt
    ```
 
-2. Run the app
+2. Rodar o app
 
    ```
    $ streamlit run streamlit_app.py
