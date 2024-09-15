@@ -13,7 +13,7 @@ O Protótipo do time Abacateam para o evento Porto Hack Santos 2024
 2. Rodar o app
 
    ```
-   $ streamlit run streamlit_app.py
+   $ streamlit run Chegada.py
    ```
 
 3. Simulando falha no envio do status da carga:
